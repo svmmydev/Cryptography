@@ -1,15 +1,17 @@
-﻿using System;
+﻿
 using System.Text;
-using System.Security.Cryptography;
 using ClaveSimetricaClass;
 using ClaveAsimetricaClass;
+using Crypto.Utils;
 
 namespace SimuladorEnvioRecepcion
 {
     class Program
     {   
-        static string UserName;
-        static string SecurePass;  
+        static string? UserName;
+        static string? SecurePass;
+        static string? Salt;
+        static Dictionary<string, string> DataHash;
         static ClaveAsimetrica Emisor = new ClaveAsimetrica();
         static ClaveAsimetrica Receptor = new ClaveAsimetrica();
         static ClaveSimetrica ClaveSimetricaEmisor = new ClaveSimetrica();
@@ -21,14 +23,15 @@ namespace SimuladorEnvioRecepcion
         {
 
             /****PARTE 1****/
+            
             //Login / Registro
             Console.WriteLine ("¿Deseas registrarte? (S/N)");
-            string registro = Console.ReadLine ();
+            string? registro = Console.ReadLine();
 
-            if (registro =="S")
+            if (registro?.ToUpper() == "S")
             {
                 //Realizar registro del cliente
-                Registro();                
+                Registro();
             }
 
             //Realizar login
@@ -39,7 +42,7 @@ namespace SimuladorEnvioRecepcion
             if (login)
             {                  
                 byte[] TextoAEnviar_Bytes = Encoding.UTF8.GetBytes(TextoAEnviar); 
-                Console.WriteLine("Texto a enviar bytes: {0}", BytesToStringHex(TextoAEnviar_Bytes));    
+                Console.WriteLine("Texto a enviar bytes: {0}", CryptoUtils.BytesToStringHex(TextoAEnviar_Bytes));    
                 
                 //LADO EMISOR
 
@@ -69,49 +72,56 @@ namespace SimuladorEnvioRecepcion
 
         public static void Registro()
         {
-            Console.WriteLine ("Indica tu nombre de usuario:");
+            Console.WriteLine ("\nIndica tu nombre de usuario:");
             UserName = Console.ReadLine();
             //Una vez obtenido el nombre de usuario lo guardamos en la variable UserName y este ya no cambiará 
 
-            Console.WriteLine ("Indica tu password:");
-            string passwordRegister = Console.ReadLine();
+            Console.WriteLine ("\nIndica tu password:");
+            string? passwordRegister = Console.ReadLine();
             //Una vez obtenido el passoword de registro debemos tratarlo como es debido para almacenarlo correctamente a la variable SecurePass
 
             /***PARTE 1***/
-            /*Añadir el código para poder almacenar el password de manera segura*/
 
+            //Se calcula un 'Hash' (SHA512) iterado 10000 veces y se almacena junto a su 'salt' generado aleatoriamente.
+            DataHash = CryptoUtils.GenerarHashConSaltIterado(passwordRegister!);
+            Console.WriteLine($"\n# Prueba:\nSALT: {DataHash["salt"]}\nHASH CON SALT: {DataHash["hash"]} (SHA512 iterado)");
+
+            Salt = DataHash["salt"];
+            SecurePass = DataHash["hash"];
         }
-
 
         public static bool Login()
         {
             bool auxlogin = false;
+
             do
             {
-                Console.WriteLine ("Acceso a la aplicación");
-                Console.WriteLine ("Usuario: ");
+                Console.WriteLine ("\nACCESO A LA APLICACIÓN");
+                Console.WriteLine ("\nUsuario: ");
                 string userName = Console.ReadLine();
 
-                Console.WriteLine ("Password: ");
+                Console.WriteLine ("\nPassword: ");
                 string Password = Console.ReadLine();
 
                 /***PARTE 1***/
-                /*Modificar esta parte para que el login se haga teniendo en cuenta que el registro se realizó con SHA512 y salt*/
 
-
+                //Se calcula el Hash iterado con el 'salt' y el 'Hash' obtenidos previamente y se procesa su comprobación
+                if (UserName == userName && CryptoUtils.VerificarPassword(Password!, SecurePass!, Salt!))
+                {
+                    Console.WriteLine("\nLogin correcto");
+                    auxlogin = true;
+                }
+                else if (UserName != userName)
+                {
+                    Console.WriteLine("\n# Usuario inexistente #");
+                }
+                else
+                {
+                    Console.WriteLine("\n# Contraseña incorrecta #");
+                }
             }while (!auxlogin);
 
             return auxlogin;
         }
-
-        static string BytesToStringHex (byte[] result)
-        {
-            StringBuilder stringBuilder = new StringBuilder();
-
-            foreach (byte b in result)
-                stringBuilder.AppendFormat("{0:x2}", b);
-
-            return stringBuilder.ToString();
-        }        
     }
 }

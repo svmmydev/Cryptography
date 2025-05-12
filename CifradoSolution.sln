@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClaveAsimetricaClass", "ClaveAsimetricaClass\ClaveAsimetricaClass.csproj", "{E5F8C59C-1D7A-40C2-941A-8362FB0378E4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClaveSimetricaClass", "ClaveSimetricaClass\ClaveSimetricaClass.csproj", "{FBB9AE50-09D5-44A5-A2BC-8CC3445D7377}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimulacionEnvioRecepcion", "SimulacionEnvioRecepcion\SimulacionEnvioRecepcion.csproj", "{22031619-A200-47EB-838B-79142C51E764}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E5F8C59C-1D7A-40C2-941A-8362FB0378E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E5F8C59C-1D7A-40C2-941A-8362FB0378E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E5F8C59C-1D7A-40C2-941A-8362FB0378E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E5F8C59C-1D7A-40C2-941A-8362FB0378E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FBB9AE50-09D5-44A5-A2BC-8CC3445D7377}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FBB9AE50-09D5-44A5-A2BC-8CC3445D7377}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FBB9AE50-09D5-44A5-A2BC-8CC3445D7377}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FBB9AE50-09D5-44A5-A2BC-8CC3445D7377}.Release|Any CPU.Build.0 = Release|Any CPU
+		{22031619-A200-47EB-838B-79142C51E764}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22031619-A200-47EB-838B-79142C51E764}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22031619-A200-47EB-838B-79142C51E764}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22031619-A200-47EB-838B-79142C51E764}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE7B0180-BB7F-4211-9A64-C6D944FE228D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE7B0180-BB7F-4211-9A64-C6D944FE228D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE7B0180-BB7F-4211-9A64-C6D944FE228D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE7B0180-BB7F-4211-9A64-C6D944FE228D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
