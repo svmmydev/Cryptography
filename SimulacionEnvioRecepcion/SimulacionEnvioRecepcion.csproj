@@ -9,6 +9,6 @@
 
   <ItemGroup>
     <ProjectReference Include = "../ClaveAsimetricaClass/ClaveAsimetricaClass.csproj" />
-    <ProjectReference Include = "../ClaveSimetricaClass/ClaveSimetricaClass.csproj" />           
+    <ProjectReference Include = "../ClaveSimetricaClass/ClaveSimetricaClass.csproj" />
   </ItemGroup>
 </Project>
