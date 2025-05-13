@@ -102,9 +102,7 @@ namespace SimuladorEnvioRecepcion
                 Console.WriteLine($"\n# Clave simétrica cifrada (IV):\n{CryptoUtils.BytesToStringHex(ClaveSimetricaIVCifrada)}");
 
                 //PLUS: KEY - IV emisor para comparar
-                ClaveSimetricaKEYCifrada = Emisor.CifrarMensaje(ClaveSimetricaEmisor.Key, Receptor.PublicKey);
                 Console.WriteLine($"\n# Clave KEY original del emisor:\n{CryptoUtils.BytesToStringHex(ClaveSimetricaEmisor.Key)}");
-                ClaveSimetricaIVCifrada = Emisor.CifrarMensaje(ClaveSimetricaEmisor.IV, Receptor.PublicKey);
                 Console.WriteLine($"\n# Clave IV original del emisor:\n{CryptoUtils.BytesToStringHex(ClaveSimetricaEmisor.IV)}");
 
 
