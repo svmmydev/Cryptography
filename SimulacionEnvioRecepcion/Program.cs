@@ -47,7 +47,7 @@ namespace SimuladorEnvioRecepcion
             }
             else
             {
-                Console.WriteLine("No hay ningún usuario almacenado");
+                Console.WriteLine("\nNo hay ningún usuario almacenado");
             }
 
             /****FIN PARTE 1****/
