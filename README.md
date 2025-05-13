@@ -77,24 +77,24 @@ El sistema está completamente basado en consola y simula una comunicación punt
     <tr>
         <td>
             <pre>
-                SEGURIDAD-CRYPTOGRAFIA
-                │
-                ├── 🔐 ClaveAsimetricaClass
-                │   ├── 📄 Class1.cs
-                │   └── 📄 ClaveAsimetricaClass.cs
-                │
-                ├── 🔐 ClaveSimetricaClass
-                │   ├── 📄 Class1.cs
-                │   └── 📄 ClaveSimetricaClass.cs
-                │
-                ├── 💬 SimulacionEnvioRecepcion
-                │   ├── 📁 utils
-                │   │   └── 🛠️ CryptoUtils.cs
-                │   └── 📄 Program.cs
-                │
-                ├── 📄 CifradoSolution.sln
-                ├── 📄 README.md
-                └── 📄 seguridad-criptografia.csproj
+            SEGURIDAD-CRYPTOGRAFIA
+            │
+            ├── 🔐 ClaveAsimetricaClass
+            │   ├── 📄 Class1.cs
+            │   └── 📄 ClaveAsimetricaClass.cs
+            │
+            ├── 🔐 ClaveSimetricaClass
+            │   ├── 📄 Class1.cs
+            │   └── 📄 ClaveSimetricaClass.cs
+            │
+            ├── 💬 SimulacionEnvioRecepcion
+            │   ├── 📁 utils
+            │   │   └── 🛠️ CryptoUtils.cs
+            │   └── 📄 Program.cs
+            │
+            ├── 📄 CifradoSolution.sln
+            ├── 📄 README.md
+            └── 📄 seguridad-criptografia.csproj
             </pre>
         </td>
     </tr>
