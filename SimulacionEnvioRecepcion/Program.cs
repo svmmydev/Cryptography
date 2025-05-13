@@ -8,31 +8,42 @@ namespace SimuladorEnvioRecepcion
 {
     class Program
     {   
+        //Credenciales
         static string? UserName;
         static string? SecurePass;
         static string? Salt;
         static bool login;
-        static Dictionary<string, string> DataHash;
+        static Dictionary<string, string>? DataHash;
+
+
+        //Claves y objetos
         static ClaveAsimetrica Emisor = new ClaveAsimetrica();
         static ClaveAsimetrica Receptor = new ClaveAsimetrica();
         static ClaveSimetrica ClaveSimetricaEmisor = new ClaveSimetrica();
         static ClaveSimetrica ClaveSimetricaReceptor = new ClaveSimetrica();
 
+
+        //Datos a enviar originales
         static string TextoAEnviar = "Me he dado cuenta que incluso las personas que dicen que todo " +
             "está predestinado y que no podemos hacer nada para cambiar nuestro destino igual miran antes " + 
             "de cruzar la calle. Stephen Hawking.";
-        static byte[] TextoAEnviar_Bytes;
+        static byte[]? TextoAEnviar_Bytes;
 
-        static byte[] FirmaEmisor;
-        static byte[] MensajeCifradoSimetrico;
-        static byte[] ClaveSimetricaKEYCifrada;
-        static byte[] ClaveSimetricaIVCifrada;
 
-        static byte[] ClaveSimetricaKEYDescifrada;
-        static byte[] ClaveSimetricaIVDescifrada;
-        static string MensajeDescifradoSimetrico;
-        static byte[] MensajeDescifradoSimetrico_Bytes;
+        //Resultados Emisor
+        static byte[]? FirmaEmisor;
+        static byte[]? MensajeCifradoSimetrico;
+        static byte[]? ClaveSimetricaKEYCifrada;
+        static byte[]? ClaveSimetricaIVCifrada;
+        
+
+        //Resultados Receptor
+        static byte[]? ClaveSimetricaKEYDescifrada;
+        static byte[]? ClaveSimetricaIVDescifrada;
+        static string? MensajeDescifradoSimetrico;
+        static byte[]? MensajeDescifradoSimetrico_Bytes;
         static bool FirmaValida;
+
 
         static void Main(string[] args)
         {
@@ -171,10 +182,10 @@ namespace SimuladorEnvioRecepcion
             {
                 Console.WriteLine ("\n### ACCESO A LA APLICACIÓN ###");
                 Console.WriteLine ("\n# Usuario: ");
-                string userName = Console.ReadLine();
+                string userName = Console.ReadLine()!;
 
                 Console.WriteLine ("\n# Password: ");
-                string Password = Console.ReadLine();
+                string Password = Console.ReadLine()!;
 
                 /****PARTE 1****/
 
