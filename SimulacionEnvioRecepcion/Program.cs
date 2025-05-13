@@ -18,13 +18,21 @@ namespace SimuladorEnvioRecepcion
         static ClaveSimetrica ClaveSimetricaEmisor = new ClaveSimetrica();
         static ClaveSimetrica ClaveSimetricaReceptor = new ClaveSimetrica();
 
-        static string TextoAEnviar = "Me he dado cuenta que incluso las personas que dicen que todo está predestinado y que no podemos hacer nada para cambiar nuestro destino igual miran antes de cruzar la calle. Stephen Hawking.";
+        static string TextoAEnviar = "Me he dado cuenta que incluso las personas que dicen que todo " +
+            "está predestinado y que no podemos hacer nada para cambiar nuestro destino igual miran antes " + 
+            "de cruzar la calle. Stephen Hawking.";
         static byte[] TextoAEnviar_Bytes;
 
         static byte[] FirmaEmisor;
         static byte[] MensajeCifradoSimetrico;
         static byte[] ClaveSimetricaKEYCifrada;
         static byte[] ClaveSimetricaIVCifrada;
+
+        static byte[] ClaveSimetricaKEYDescifrada;
+        static byte[] ClaveSimetricaIVDescifrada;
+        static string MensajeDescifradoSimetrico;
+        static byte[] MensajeDescifradoSimetrico_Bytes;
+        static bool FirmaValida;
 
         static void Main(string[] args)
         {
@@ -57,17 +65,22 @@ namespace SimuladorEnvioRecepcion
             if (login)
             {
                 TextoAEnviar_Bytes = Encoding.UTF8.GetBytes(TextoAEnviar);
-                Console.WriteLine($"\nTexto a enviar bytes:\n{CryptoUtils.BytesToStringHex(TextoAEnviar_Bytes)}");
+                Console.WriteLine($"\n# Texto a enviar bytes:\n{CryptoUtils.BytesToStringHex(TextoAEnviar_Bytes)}");
                 
                 /// -------------
                 /// LADO EMISOR |
                 /// -------------
 
                 //Firmar mensaje
+                FirmaEmisor = Emisor.FirmarMensaje(TextoAEnviar_Bytes);
+
 
                 //Cifrar mensaje con la clave simétrica
+                MensajeCifradoSimetrico = ClaveSimetricaEmisor.CifrarMensaje(TextoAEnviar);
 
                 //Cifrar clave simétrica con la clave pública del receptor
+                ClaveSimetricaKEYCifrada = Emisor.CifrarMensaje(ClaveSimetricaEmisor.Key, Receptor.PublicKey);
+                ClaveSimetricaIVCifrada = Emisor.CifrarMensaje(ClaveSimetricaEmisor.IV, Receptor.PublicKey);
 
 
                 /// ---------------
@@ -75,10 +88,20 @@ namespace SimuladorEnvioRecepcion
                 /// ---------------
 
                 //Descifrar clave simétrica
+                ClaveSimetricaKEYDescifrada = Receptor.DescifrarMensaje(ClaveSimetricaKEYCifrada);
+                ClaveSimetricaIVDescifrada = Receptor.DescifrarMensaje(ClaveSimetricaIVCifrada);
  
                 //Descifrar mensaje con la clave simétrica
+                MensajeDescifradoSimetrico = ClaveSimetricaReceptor.DescifrarMensaje(
+                    MensajeCifradoSimetrico,
+                    ClaveSimetricaKEYDescifrada,
+                    ClaveSimetricaIVDescifrada);
+                
+                //Pasar mensaje descifrado a bytes
+                MensajeDescifradoSimetrico_Bytes = Encoding.UTF8.GetBytes(MensajeDescifradoSimetrico);
 
                 //Comprobar firma
+                FirmaValida = Receptor.ComprobarFirma(FirmaEmisor, MensajeDescifradoSimetrico_Bytes, Emisor.PublicKey);
             }
 
             /****FIN PARTE 2****/
