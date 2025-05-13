@@ -10,7 +10,7 @@ Este proyecto simula un sistema de envío seguro de mensajes entre dos partes (E
 
 <div align="center">
 
-![Simulación de carretera](Assets/Images/10-mostrar-carretera-en-cliente.png)
+![Simulación de cryptografía](resources/resultado.png)
 
 </div>
 
