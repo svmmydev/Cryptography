@@ -1,6 +1,4 @@
 ﻿using System.Security.Cryptography;
-using System.IO;
-using System.Xml.Serialization;
 
 namespace ClaveSimetricaClass
 {

@@ -50,6 +50,7 @@ namespace ClaveAsimetricaClass
             RSACryptoServiceProvider RSA_Externo = new RSACryptoServiceProvider();
             RSA_Externo.ImportParameters (ClavePublicaExterna);
 
+            //TODO: Eliminar linea, no sirve para nada?
             byte [] textoPlanoBytes = Encoding.UTF8.GetBytes("hola");
             return RSA_Externo.Encrypt(MensajeBytes,false);
         }
